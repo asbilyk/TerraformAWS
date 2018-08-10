@@ -7,6 +7,7 @@ resource "aws_instance" "web" {
   launch_configuration = "${aws_launch_configuration.example.id}"
   min_size = 2
   max_size = 10
+  health_check_grace_period = 900
   tags {
     Name = "web"
   }
