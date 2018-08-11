@@ -23,7 +23,11 @@ resource "aws_instance" "web" {
     interval = 15
     target = "HTTP:${var.server_port}/"
   }
-   
+   zone_id = "${myzone.primary.zone_id}"
+   name = "hostname.cloud.companyintranet.com"
+   type = "A"
+   ttl = "300"
+   records = ["${aws_eip.lb.public_ip}"] 
   listener {
     lb_port = 80
     lb_protocol = "http"
